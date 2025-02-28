@@ -21,7 +21,8 @@ app.get('/roll', (request, response) => {
 	console.log('Calling "/roll" on the Node.js server.')
 	response.type('text/plain')
 	const diceRoll = Math.floor(Math.random() * 6) + 1;
-    response.send(diceRoll.toString())
+    //response.send(diceRoll.toString())
+	response.json({ diceRoll })
 })
 
 // Implement a custom About page.
