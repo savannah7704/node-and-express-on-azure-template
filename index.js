@@ -10,11 +10,20 @@ const port = process.env.PORT || 3000
 const majorVersion = 1
 const minorVersion = 3
 
+
 // Use Express to publish static HTML, CSS, and JavaScript files that run in the browser. 
 app.use(express.static(__dirname + '/static'))
 app.use(cors({ origin: '*' }))
 
 // The app.get functions below are being processed in Node.js running on the server.
+
+app.get('/roll', (request, response) => {
+	console.log('Calling "/roll" on the Node.js server.')
+	response.type('text/plain')
+	const diceRoll = Math.floor(Math.random() * 6) + 1;
+    response.send(diceRoll.toString())
+})
+
 // Implement a custom About page.
 app.get('/about', (request, response) => {
 	console.log('Calling "/about" on the Node.js server.')
@@ -34,6 +43,7 @@ app.get('/api/ping', (request, response) => {
 	response.send('ping response')
 })
 
+/*
 // Return the value of 2 plus 2.
 app.get('/2plus2', (request, response) => {
 	console.log('Calling "/2plus2" on the Node.js server.')
@@ -135,7 +145,7 @@ const favoritePlaces = require('./FavoritePlaces.json');
 // Create a route that serves the JSON data
 app.get('/api/favorite-places', (req, res) => {
   res.json(favoritePlaces);
-});
+}); */
 
 
 
